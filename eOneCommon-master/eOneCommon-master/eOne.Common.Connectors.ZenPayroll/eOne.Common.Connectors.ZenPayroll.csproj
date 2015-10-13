@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8A6B1EB2-21E5-47FF-A8AF-F3E2B80F4C51}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eOne.Common.Connectors.ZenPayroll</RootNamespace>
+    <AssemblyName>eOne.Common.Connectors.ZenPayroll</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\ZenPayrollAddress.cs" />
+    <Compile Include="Models\ZenPayrollBenefit.cs" />
+    <Compile Include="Models\ZenPayrollCompany.cs" />
+    <Compile Include="Models\ZenPayrollCompanyBenefit.cs" />
+    <Compile Include="Models\ZenPayrollCompanyCompensation.cs" />
+    <Compile Include="Models\ZenPayrollCompanyCompensations.cs" />
+    <Compile Include="Models\ZenPayrollCompanyLocation.cs" />
+    <Compile Include="Models\ZenPayrollCompensation.cs" />
+    <Compile Include="Models\ZenPayrollEmployee.cs" />
+    <Compile Include="Models\ZenPayrollEmployeeBenefits.cs" />
+    <Compile Include="Models\ZenPayrollEmployeeCompensation.cs" />
+    <Compile Include="Models\ZenPayrollEmployeeCompensations.cs" />
+    <Compile Include="Models\ZenPayrollFederalTaxInformation.cs" />
+    <Compile Include="Models\ZenPayrollGarnishment.cs" />
+    <Compile Include="Models\ZenPayrollJob.cs" />
+    <Compile Include="Models\ZenPayrollLocation.cs" />
+    <Compile Include="Models\ZenPayrollPaidTimeOff.cs" />
+    <Compile Include="Models\ZenPayrollPayPeriod.cs" />
+    <Compile Include="Models\ZenPayrollPayPeriodEligibleEmployee.cs" />
+    <Compile Include="Models\ZenPayrollPayPeriodPayroll.cs" />
+    <Compile Include="Models\ZenPayrollPayroll.cs" />
+    <Compile Include="Models\ZenPayrollPayrollDetail.cs" />
+    <Compile Include="Models\ZenPayrollPayrollTotals.cs" />
+    <Compile Include="Models\ZenPayrollTermination.cs" />
+    <Compile Include="ZenPayrollConnector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eOne.Common\eOne.Common.csproj">
+      <Project>{5b29ddf0-0c12-4c3c-85ad-b9e11d9ffb69}</Project>
+      <Name>eOne.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

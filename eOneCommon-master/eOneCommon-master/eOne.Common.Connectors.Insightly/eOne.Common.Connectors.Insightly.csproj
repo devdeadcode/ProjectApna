@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4C593B45-CF53-4345-B490-22944A9A7E7C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eOne.Common.Connectors.Insightly</RootNamespace>
+    <AssemblyName>eOne.Common.Connectors.Insightly</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InsightlyConnector.cs" />
+    <Compile Include="Models\InsightlyAddress.cs" />
+    <Compile Include="Models\InsightlyContact.cs" />
+    <Compile Include="Models\InsightlyContactAddress.cs" />
+    <Compile Include="Models\InsightlyContactInfo.cs" />
+    <Compile Include="Models\InsightlyContactLink.cs" />
+    <Compile Include="Models\InsightlyDate.cs" />
+    <Compile Include="Models\InsightlyEmail.cs" />
+    <Compile Include="Models\InsightlyEmailLink.cs" />
+    <Compile Include="Models\InsightlyEvent.cs" />
+    <Compile Include="Models\InsightlyEventLink.cs" />
+    <Compile Include="Models\InsightlyFileAttachment.cs" />
+    <Compile Include="Models\InsightlyLink.cs" />
+    <Compile Include="Models\InsightlyNote.cs" />
+    <Compile Include="Models\InsightlyNoteLink.cs" />
+    <Compile Include="Models\InsightlyOpportunity.cs" />
+    <Compile Include="Models\InsightlyOpportunityCategory.cs" />
+    <Compile Include="Models\InsightlyOpportunityStateReason.cs" />
+    <Compile Include="Models\InsightlyOrganisation.cs" />
+    <Compile Include="Models\InsightlyOrganisationLink.cs" />
+    <Compile Include="Models\InsightlyPipeline.cs" />
+    <Compile Include="Models\InsightlyPipelineStage.cs" />
+    <Compile Include="Models\InsightlyProject.cs" />
+    <Compile Include="Models\InsightlyProjectCategory.cs" />
+    <Compile Include="Models\InsightlyRelationship.cs" />
+    <Compile Include="Models\InsightlyTag.cs" />
+    <Compile Include="Models\InsightlyTask.cs" />
+    <Compile Include="Models\InsightlyTaskCategory.cs" />
+    <Compile Include="Models\InsightlyTaskLink.cs" />
+    <Compile Include="Models\InsightlyTeam.cs" />
+    <Compile Include="Models\InsightlyTeamMember.cs" />
+    <Compile Include="Models\InsightlyUser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eOne.Common\eOne.Common.csproj">
+      <Project>{5b29ddf0-0c12-4c3c-85ad-b9e11d9ffb69}</Project>
+      <Name>eOne.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,6 @@
+C:\Users\DevMachine1\Desktop\New folder\SampleQueryExpression\SampleQueryExpression\bin\Debug\SampleQueryExpression.exe.config
+C:\Users\DevMachine1\Desktop\New folder\SampleQueryExpression\SampleQueryExpression\bin\Debug\SampleQueryExpression.exe
+C:\Users\DevMachine1\Desktop\New folder\SampleQueryExpression\SampleQueryExpression\bin\Debug\SampleQueryExpression.pdb
+C:\Users\DevMachine1\Desktop\New folder\SampleQueryExpression\SampleQueryExpression\obj\Debug\SampleQueryExpression.csprojResolveAssemblyReference.cache
+C:\Users\DevMachine1\Desktop\New folder\SampleQueryExpression\SampleQueryExpression\obj\Debug\SampleQueryExpression.exe
+C:\Users\DevMachine1\Desktop\New folder\SampleQueryExpression\SampleQueryExpression\obj\Debug\SampleQueryExpression.pdb

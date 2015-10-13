@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "Charge";
+}
+
+<h2>Stripe Payment Test</h2>
+<p>Test card: 4000 0000 0000 0077</p>
+<p>Expiry date on card: any future date</p>
+<p>CVV: any 3 digit number</p>
+<form action="@Url.Action("Charge")" method="POST">
+    <script src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+            data-key="pk_test_mVBryZrK0gD2LjXpdNyEpQJS"
+            data-image="images/eone.png"
+            data-name="ZD-CRM Site"
+            data-description="eOne Solutions"
+            data-currency="USD"
+            data-amount="999">
+    </script>
+</form>
+
+<form action="@Url.Action("Charge")" method="get">
+    
+</form>
+

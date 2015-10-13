@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1BB275B7-E5E7-4950-9BB7-88FF0EBC7A8C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eOne.Common.Connectors.GoogleAnalytics</RootNamespace>
+    <AssemblyName>eOne.Common.Connectors.GoogleAnalytics</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="GoogleAnalyticsConnector.cs" />
+    <Compile Include="Helpers\GoogleAnalyticsHelper.cs" />
+    <Compile Include="Models\GoogleAnalyticsAdsense.cs" />
+    <Compile Include="Models\GoogleAnalyticsAdwords.cs" />
+    <Compile Include="Models\GoogleAnalyticsAudience.cs" />
+    <Compile Include="Models\GoogleAnalyticsBrowsers.cs" />
+    <Compile Include="Models\GoogleAnalyticsColumnHeader.cs" />
+    <Compile Include="Models\GoogleAnalyticsData.cs" />
+    <Compile Include="Models\GoogleAnalyticsInternalSearches.cs" />
+    <Compile Include="Models\GoogleAnalyticsKeywords.cs" />
+    <Compile Include="Models\GoogleAnalyticsLocations.cs" />
+    <Compile Include="Models\GoogleAnalyticsMobileDevices.cs" />
+    <Compile Include="Models\GoogleAnalyticsPageTracking.cs" />
+    <Compile Include="Models\GoogleAnalyticsProfileInfo.cs" />
+    <Compile Include="Models\GoogleAnalyticsSearchEngines.cs" />
+    <Compile Include="Models\GoogleAnalyticsSessions.cs" />
+    <Compile Include="Models\GoogleAnalyticsSources.cs" />
+    <Compile Include="Models\GoogleAnalyticsSystem.cs" />
+    <Compile Include="Models\GoogleAnalyticsTime.cs" />
+    <Compile Include="Models\GoogleAnalyticsUsers.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eOne.Common\eOne.Common.csproj">
+      <Project>{5b29ddf0-0c12-4c3c-85ad-b9e11d9ffb69}</Project>
+      <Name>eOne.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

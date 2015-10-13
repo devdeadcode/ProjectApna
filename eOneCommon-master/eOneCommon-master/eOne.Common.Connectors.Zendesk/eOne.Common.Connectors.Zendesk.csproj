@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CFEDF8C4-6119-46DB-9C98-1B7F2655C74A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eOne.Common.Connectors.Zendesk</RootNamespace>
+    <AssemblyName>eOne.Common.Connectors.Zendesk</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ActionModels\ZendeskActionChangeTicketStatus.cs" />
+    <Compile Include="Models\ZendeskBrand.cs" />
+    <Compile Include="Models\ZendeskGroup.cs" />
+    <Compile Include="Models\ZendeskGroupMember.cs" />
+    <Compile Include="Models\ZendeskImage.cs" />
+    <Compile Include="Models\ZendeskMinutesTaken.cs" />
+    <Compile Include="Models\ZendeskOrganization.cs" />
+    <Compile Include="Models\ZendeskRequest.cs" />
+    <Compile Include="Models\ZendeskTicket.cs" />
+    <Compile Include="Models\ZendeskTicketAudit.cs" />
+    <Compile Include="Models\ZendeskTicketAuditEvent.cs" />
+    <Compile Include="Models\ZendeskTicketComment.cs" />
+    <Compile Include="Models\ZendeskTicketCustomFieldValue.cs" />
+    <Compile Include="Models\ZendeskTicketMetrics.cs" />
+    <Compile Include="Models\ZendeskTicketSatisfactionRating.cs" />
+    <Compile Include="Models\ZendeskTicketVia.cs" />
+    <Compile Include="Models\ZendeskTicketViaSource.cs" />
+    <Compile Include="Models\ZendeskUser.cs" />
+    <Compile Include="Models\ZendeskAttachment.cs" />
+    <Compile Include="ZendeskConnector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eOne.Common\eOne.Common.csproj">
+      <Project>{5B29DDF0-0C12-4C3C-85AD-B9E11D9FFB69}</Project>
+      <Name>eOne.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,22 @@
+﻿@model TestWebRemake.Controllers.IndexModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="row">
+    <div class="col-md-12">
+        <h2>@ViewBag.Name</h2>
+
+        @foreach (var entity in Model.Entities)
+        {
+        <p>
+            <a href="/Home/Entity/@entity.EntityName">@entity.EntityName</a>
+
+        </p>
+        }
+
+
+    </div>
+
+</div>

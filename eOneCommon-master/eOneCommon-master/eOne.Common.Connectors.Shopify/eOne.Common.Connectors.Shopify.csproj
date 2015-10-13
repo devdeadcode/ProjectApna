@@ -1,0 +1,87 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B35CD57D-7A1F-424A-84AA-0D8B724EED1D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eOne.Common.Connectors.Shopify</RootNamespace>
+    <AssemblyName>eOne.Common.Connectors.Shopify</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\ShopifyAddress.cs" />
+    <Compile Include="Models\ShopifyArticle.cs" />
+    <Compile Include="Models\ShopifyBlog.cs" />
+    <Compile Include="Models\ShopifyCheckout.cs" />
+    <Compile Include="Models\ShopifyClientDetails.cs" />
+    <Compile Include="Models\ShopifyComment.cs" />
+    <Compile Include="Models\ShopifyCustomer.cs" />
+    <Compile Include="Models\ShopifyCustomerAddress.cs" />
+    <Compile Include="Models\ShopifyCustomerList.cs" />
+    <Compile Include="Models\ShopifyDiscountCode.cs" />
+    <Compile Include="Models\ShopifyFulfillment.cs" />
+    <Compile Include="Models\ShopifyLocation.cs" />
+    <Compile Include="Models\ShopifyMetafield.cs" />
+    <Compile Include="Models\ShopifyNoteAttribute.cs" />
+    <Compile Include="Models\ShopifyOrder.cs" />
+    <Compile Include="Models\ShopifyOrderLine.cs" />
+    <Compile Include="Models\ShopifyOrderLines.cs" />
+    <Compile Include="Models\ShopifyOrderList.cs" />
+    <Compile Include="Models\ShopifyOrderRisk.cs" />
+    <Compile Include="Models\ShopifyPaymentDetails.cs" />
+    <Compile Include="Models\ShopifyProduct.cs" />
+    <Compile Include="Models\ShopifyProductList.cs" />
+    <Compile Include="Models\ShopifyProductOption.cs" />
+    <Compile Include="Models\ShopifyProductVariants.cs" />
+    <Compile Include="Models\ShopifyRecurringInvoice.cs" />
+    <Compile Include="Models\ShopifyShippingLine.cs" />
+    <Compile Include="Models\ShopifyTaxLine.cs" />
+    <Compile Include="Models\ShopifyTransaction.cs" />
+    <Compile Include="ShopifyConnector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eOne.Common\eOne.Common.csproj">
+      <Project>{5b29ddf0-0c12-4c3c-85ad-b9e11d9ffb69}</Project>
+      <Name>eOne.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

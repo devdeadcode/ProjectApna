@@ -1,0 +1,22 @@
+﻿@model WebApi.Controllers.IndexModel
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+<div class="jumbotron">
+    <h1>ASP.NET</h1>
+    <h2>@ViewBag.Name</h2>
+
+    @foreach (var entity in Model.Entities)
+    {
+        <p>
+            <a href="/Home/Entity/@entity.EntityName">@entity.EntityName</a>
+
+        </p>
+    }
+</div>
+
+<div class="row">
+    
+</div>
