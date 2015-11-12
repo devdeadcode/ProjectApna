@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{96C5DB36-3614-492C-86F1-E30647A0BB54}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eOne.Common.Connectors.SalesForce</RootNamespace>
+    <AssemblyName>eOne.Common.Connectors.SalesForce</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Helpers\FavoriteHelper.cs" />
+    <Compile Include="Helpers\SalesForceMetadataHelper.cs" />
+    <Compile Include="Helpers\SalesForceQueryHelper.cs" />
+    <Compile Include="Models\Metadata\SalesForceChildRelationship.cs" />
+    <Compile Include="Models\Metadata\SalesForceLimit.cs" />
+    <Compile Include="Models\Metadata\SalesForceLimits.cs" />
+    <Compile Include="Models\Metadata\SalesForceObject.cs" />
+    <Compile Include="Models\Metadata\SalesForceField.cs" />
+    <Compile Include="Models\Metadata\SalesForceObjectResponse.cs" />
+    <Compile Include="Models\Metadata\SalesForceObjectUrls.cs" />
+    <Compile Include="Models\Metadata\SalesForcePicklistValue.cs" />
+    <Compile Include="Models\Metadata\SalesForceRecordTypeInfo.cs" />
+    <Compile Include="Models\SalesForceAccount.cs" />
+    <Compile Include="Models\SalesForceActivity.cs" />
+    <Compile Include="Models\SalesForceAsset.cs" />
+    <Compile Include="Models\SalesForceAttributes.cs" />
+    <Compile Include="Models\SalesForceCampaign.cs" />
+    <Compile Include="Models\SalesForceCase.cs" />
+    <Compile Include="Models\SalesForceCaseComment.cs" />
+    <Compile Include="Models\SalesForceContact.cs" />
+    <Compile Include="Models\SalesForceContract.cs" />
+    <Compile Include="Models\SalesForceContractLine.cs" />
+    <Compile Include="Models\SalesForceCustomEntity.cs" />
+    <Compile Include="Models\SalesForceDocument.cs" />
+    <Compile Include="Models\SalesForceEntity.cs" />
+    <Compile Include="Models\SalesForceEvent.cs" />
+    <Compile Include="Models\SalesForceIdea.cs" />
+    <Compile Include="Models\SalesForceIdeaComment.cs" />
+    <Compile Include="Models\SalesForceLead.cs" />
+    <Compile Include="Models\SalesForceNote.cs" />
+    <Compile Include="Models\SalesForceOpportunity.cs" />
+    <Compile Include="Models\SalesForceOpportunityCompetitor.cs" />
+    <Compile Include="Models\SalesForceOpportunityLine.cs" />
+    <Compile Include="Models\SalesForceOrder.cs" />
+    <Compile Include="Models\SalesForceOrderItem.cs" />
+    <Compile Include="Models\SalesForceOrganization.cs" />
+    <Compile Include="Models\SalesForcePartner.cs" />
+    <Compile Include="Models\SalesForcePriceList.cs" />
+    <Compile Include="Models\SalesForceProduct.cs" />
+    <Compile Include="Models\SalesForceQuote.cs" />
+    <Compile Include="Models\SalesForceQuoteLine.cs" />
+    <Compile Include="Models\SalesForceSite.cs" />
+    <Compile Include="Models\SalesForceSolution.cs" />
+    <Compile Include="Models\SalesForceTask.cs" />
+    <Compile Include="Models\SalesForceUser.cs" />
+    <Compile Include="SalesForceConnector.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eOne.Common\eOne.Common.csproj">
+      <Project>{5b29ddf0-0c12-4c3c-85ad-b9e11d9ffb69}</Project>
+      <Name>eOne.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

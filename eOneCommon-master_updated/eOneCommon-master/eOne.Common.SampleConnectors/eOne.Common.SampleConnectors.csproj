@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{4DC772A4-05F3-4D00-8229-54A37120822C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eOne.Common.SampleConnectors</RootNamespace>
+    <AssemblyName>eOne.Common.SampleConnectors</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="SampleConnectors.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eOne.Common.Connectors.Asana\eOne.Common.Connectors.Asana.csproj">
+      <Project>{27a8ee7a-af05-431b-8979-370d27525a1e}</Project>
+      <Name>eOne.Common.Connectors.Asana</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Aweber\eOne.Common.Connectors.Aweber.csproj">
+      <Project>{ceb43a43-bf75-4da3-a444-974577a656b1}</Project>
+      <Name>eOne.Common.Connectors.Aweber</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.BaseCamp\eOne.Common.Connectors.BaseCamp.csproj">
+      <Project>{20466355-68a6-4bcb-b891-4cd3461820df}</Project>
+      <Name>eOne.Common.Connectors.BaseCamp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.BombBomb\eOne.Common.Connectors.BombBomb.csproj">
+      <Project>{7122eaca-ab0c-46bb-a8ec-9b0d1d0bdf08}</Project>
+      <Name>eOne.Common.Connectors.BombBomb</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.DynamicsGp\eOne.Common.Connectors.DynamicsGp.csproj">
+      <Project>{171052df-7ea3-4f77-9e27-5b06cc8c4254}</Project>
+      <Name>eOne.Common.Connectors.DynamicsGp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Emma\eOne.Common.Connectors.Emma.csproj">
+      <Project>{2bf45df6-2311-48ee-a0de-1c2deaf60cbd}</Project>
+      <Name>eOne.Common.Connectors.Emma</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Etsy\eOne.Common.Connectors.Etsy.csproj">
+      <Project>{80beb0f8-0573-4592-b789-38e941558116}</Project>
+      <Name>eOne.Common.Connectors.Etsy</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Facebook\eOne.Common.Connectors.Facebook.csproj">
+      <Project>{0b96c677-85fb-4fcf-ba63-e8eccfeeb969}</Project>
+      <Name>eOne.Common.Connectors.Facebook</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Formstack\eOne.Common.Connectors.Formstack.csproj">
+      <Project>{43ada121-5663-4bf2-ab5d-ad82b79f5665}</Project>
+      <Name>eOne.Common.Connectors.Formstack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.FreshBooks\eOne.Common.Connectors.FreshBooks.csproj">
+      <Project>{d4cb6c3e-761d-4305-aa7d-51d287c4372b}</Project>
+      <Name>eOne.Common.Connectors.FreshBooks</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.GitHub\eOne.Common.Connectors.GitHub.csproj">
+      <Project>{ce140ac5-3557-449b-9fd2-f318e5ad8c8b}</Project>
+      <Name>eOne.Common.Connectors.GitHub</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.HappyFox\eOne.Common.Connectors.HappyFox.csproj">
+      <Project>{efc37fd5-a9b3-4abe-af10-d82093f844ae}</Project>
+      <Name>eOne.Common.Connectors.HappyFox</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.HubSpot\eOne.Common.Connectors.Hubspot.csproj">
+      <Project>{1d385f26-dee5-4864-94e5-9803263311fd}</Project>
+      <Name>eOne.Common.Connectors.Hubspot</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Infusionsoft\eOne.Common.Connectors.Infusionsoft.csproj">
+      <Project>{e08d9107-4522-4993-a6b8-903b4682837c}</Project>
+      <Name>eOne.Common.Connectors.Infusionsoft</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Insightly\eOne.Common.Connectors.Insightly.csproj">
+      <Project>{4c593b45-cf53-4345-b490-22944a9a7e7c}</Project>
+      <Name>eOne.Common.Connectors.Insightly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Instagram\eOne.Common.Connectors.Instagram.csproj">
+      <Project>{effe2803-253d-4fec-9257-468c0850e96b}</Project>
+      <Name>eOne.Common.Connectors.Instagram</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Intacct\eOne.Common.Connectors.Intacct.csproj">
+      <Project>{23b6863e-b7a5-4684-bcfd-e157c28b71a4}</Project>
+      <Name>eOne.Common.Connectors.Intacct</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.MadMimi\eOne.Common.Connectors.MadMimi.csproj">
+      <Project>{0471b9ff-a3ff-49f8-8d72-83175d407db7}</Project>
+      <Name>eOne.Common.Connectors.MadMimi</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.MailChimp\eOne.Common.Connectors.MailChimp.csproj">
+      <Project>{c2abedcf-8492-4984-947b-bf32f505055a}</Project>
+      <Name>eOne.Common.Connectors.MailChimp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Mandrill\eOne.Common.Connectors.Mandrill.csproj">
+      <Project>{7d8294b7-7512-424d-a1d9-218853096471}</Project>
+      <Name>eOne.Common.Connectors.Mandrill</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Paypal\eOne.Common.Connectors.Paypal.csproj">
+      <Project>{3b65c3b7-4492-4c37-a831-9361f20cb51b}</Project>
+      <Name>eOne.Common.Connectors.Paypal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.SalesForce\eOne.Common.Connectors.SalesForce.csproj">
+      <Project>{96c5db36-3614-492c-86f1-e30647a0bb54}</Project>
+      <Name>eOne.Common.Connectors.SalesForce</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Sendloop\eOne.Common.Connectors.Sendloop.csproj">
+      <Project>{33fe4dc8-8790-4217-9d1d-c8a9d5acb939}</Project>
+      <Name>eOne.Common.Connectors.Sendloop</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Shopify\eOne.Common.Connectors.Shopify.csproj">
+      <Project>{b35cd57d-7a1f-424a-84aa-0d8b724eed1d}</Project>
+      <Name>eOne.Common.Connectors.Shopify</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Slack\eOne.Common.Connectors.Slack.csproj">
+      <Project>{d2612a28-9895-4692-a413-9292f271d60a}</Project>
+      <Name>eOne.Common.Connectors.Slack</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Timely\eOne.Common.Connectors.Timely.csproj">
+      <Project>{60166e7b-aa7a-4216-9b1a-fd3dc5c39198}</Project>
+      <Name>eOne.Common.Connectors.Timely</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Trello\eOne.Common.Connectors.Trello.csproj">
+      <Project>{45d7a7e1-470e-4922-9b39-4f54aae1d734}</Project>
+      <Name>eOne.Common.Connectors.Trello</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Twitter\eOne.Common.Connectors.Twitter.csproj">
+      <Project>{1e3767a3-ac9a-47f1-8b7e-a209d1031292}</Project>
+      <Name>eOne.Common.Connectors.Twitter</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.UserVoice\eOne.Common.Connectors.UserVoice.csproj">
+      <Project>{a870ced8-3291-40e9-b654-1fd481432622}</Project>
+      <Name>eOne.Common.Connectors.UserVoice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Xero\eOne.Common.Connectors.Xero.csproj">
+      <Project>{79d29729-6e6e-47b9-912f-acad40bd3090}</Project>
+      <Name>eOne.Common.Connectors.Xero</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Zendesk\eOne.Common.Connectors.Zendesk.csproj">
+      <Project>{cfedf8c4-6119-46db-9c98-1b7f2655c74a}</Project>
+      <Name>eOne.Common.Connectors.Zendesk</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.ZenPayroll\eOne.Common.Connectors.ZenPayroll.csproj">
+      <Project>{8a6b1eb2-21e5-47ff-a8af-f3e2b80f4c51}</Project>
+      <Name>eOne.Common.Connectors.ZenPayroll</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Zopim\eOne.Common.Connectors.Zopim.csproj">
+      <Project>{921f99c1-292d-4a4b-a385-d64148d5315e}</Project>
+      <Name>eOne.Common.Connectors.Zopim</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eOne.Common\eOne.Common.csproj">
+      <Project>{5b29ddf0-0c12-4c3c-85ad-b9e11d9ffb69}</Project>
+      <Name>eOne.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{80BEB0F8-0573-4592-B789-38E941558116}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eOne.Common.Connectors.Etsy</RootNamespace>
+    <AssemblyName>eOne.Common.Connectors.Etsy</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="EtsyConnector.cs" />
+    <Compile Include="Models\EtsyCart.cs" />
+    <Compile Include="Models\EtsyCartListing.cs" />
+    <Compile Include="Models\EtsyCoupon.cs" />
+    <Compile Include="Models\EtsyFeedback.cs" />
+    <Compile Include="Models\EtsyFeedbackInfo.cs" />
+    <Compile Include="Models\EtsyLedger.cs" />
+    <Compile Include="Models\EtsyLedgerEntry.cs" />
+    <Compile Include="Models\EtsyListing.cs" />
+    <Compile Include="Models\EtsyPayment.cs" />
+    <Compile Include="Models\EtsyPaymentAdjustment.cs" />
+    <Compile Include="Models\EtsyReceipt.cs" />
+    <Compile Include="Models\EtsyReceiptShipment.cs" />
+    <Compile Include="Models\EtsyShop.cs" />
+    <Compile Include="Models\EtsyShopSection.cs" />
+    <Compile Include="Models\EtsyTaxonomy.cs" />
+    <Compile Include="Models\EtsyTransaction.cs" />
+    <Compile Include="Models\EtsyTreasury.cs" />
+    <Compile Include="Models\EtsyTreasuryCounts.cs" />
+    <Compile Include="Models\EtsyTreasuryListing.cs" />
+    <Compile Include="Models\EtsyTreasuryListingData.cs" />
+    <Compile Include="Models\EtsyUser.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eOne.Common\eOne.Common.csproj">
+      <Project>{5b29ddf0-0c12-4c3c-85ad-b9e11d9ffb69}</Project>
+      <Name>eOne.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

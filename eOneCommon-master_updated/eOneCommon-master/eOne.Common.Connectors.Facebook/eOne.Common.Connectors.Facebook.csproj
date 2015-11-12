@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B96C677-85FB-4FCF-BA63-E8ECCFEEB969}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eOne.Common.Connectors.Facebook</RootNamespace>
+    <AssemblyName>eOne.Common.Connectors.Facebook</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FacebookConnector.cs" />
+    <Compile Include="Models\FacebookAdmin.cs" />
+    <Compile Include="Models\FacebookAgeGender.cs" />
+    <Compile Include="Models\FacebookComment.cs" />
+    <Compile Include="Models\FacebookCommentFrom.cs" />
+    <Compile Include="Models\FacebookComments.cs" />
+    <Compile Include="Models\FacebookCommentSummary.cs" />
+    <Compile Include="Models\FacebookCore.cs" />
+    <Compile Include="Models\FacebookEvent.cs" />
+    <Compile Include="Models\FacebookEventLocation.cs" />
+    <Compile Include="Models\FacebookEventPlace.cs" />
+    <Compile Include="Models\FacebookFeed.cs" />
+    <Compile Include="Models\FacebookLike.cs" />
+    <Compile Include="Models\FacebookLikes.cs" />
+    <Compile Include="Models\FacebookLikeSummary.cs" />
+    <Compile Include="Models\FacebookPages.cs" />
+    <Compile Include="Models\FacebookPost.cs" />
+    <Compile Include="Models\FacebookLocation.cs" />
+    <Compile Include="Models\FacebookPage.cs" />
+    <Compile Include="Models\FacebookPageDemographicsAgeGender.cs" />
+    <Compile Include="Models\FacebookPageInsights.cs" />
+    <Compile Include="Models\FacebookPageInsightsAgeGender.cs" />
+    <Compile Include="Models\FacebookPageInsightsLocation.cs" />
+    <Compile Include="Models\FaceBookPageDemographicsLocation.cs" />
+    <Compile Include="Models\FacebookPaging.cs" />
+    <Compile Include="Models\FacebookPagingCursors.cs" />
+    <Compile Include="Models\FacebookPostPrivacy.cs" />
+    <Compile Include="Models\FacebookPostProperty.cs" />
+    <Compile Include="Models\FacebookPostShares.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eOne.Common\eOne.Common.csproj">
+      <Project>{5b29ddf0-0c12-4c3c-85ad-b9e11d9ffb69}</Project>
+      <Name>eOne.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

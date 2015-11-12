@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C2ABEDCF-8492-4984-947B-BF32F505055A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>eOne.Common.Connectors.MailChimp</RootNamespace>
+    <AssemblyName>eOne.Common.Connectors.MailChimp</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="RestSharp, Version=105.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\RestSharp.105.0.1\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MailChimpConnector.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignAbSplitClickDetails.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignAbSplitClickDetailsA.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignAbSplitClickDetailsB.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignClickDetailMember.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignClickDetailMemberCollection.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignClickDetails.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignClickDetailsCollection.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignCollection.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignAbSplitOptions.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaign.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignFeedback.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignFeedbackCollection.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignRssOptions.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignRssSchedule.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignSavedSegment.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignSettings.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignSocialCard.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignTracking.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignTrackingCapsule.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignTrackingHighrise.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignTrackingSalesforce.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignVariateCombination.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignVariateSettings.cs" />
+    <Compile Include="Models\Conversation\MailChimpConversationData.cs" />
+    <Compile Include="Models\Conversation\MailChimpConversationMessage.cs" />
+    <Compile Include="Models\Files\MailChimpFile.cs" />
+    <Compile Include="Models\Files\MailChimpFileCollection.cs" />
+    <Compile Include="Models\List\MailChimpListAbuseCollection.cs" />
+    <Compile Include="Models\List\MailChimpListAbuse.cs" />
+    <Compile Include="Models\List\MailChimpListActivity.cs" />
+    <Compile Include="Models\List\MailChimpListActivityCollection.cs" />
+    <Compile Include="Models\List\MailChimpListAddSubscriber.cs" />
+    <Compile Include="Models\List\MailChimpListGrowthCollection.cs" />
+    <Compile Include="Models\List\MailChimpListGrowth.cs" />
+    <Compile Include="Models\List\MailChimpListMergeField.cs" />
+    <Compile Include="Models\List\MailChimpListMergeFieldCollection.cs" />
+    <Compile Include="Models\List\MailChimpListMergeFieldOptions.cs" />
+    <Compile Include="Models\MailChimpCollection.cs" />
+    <Compile Include="Models\List\MailChimpListContact.cs" />
+    <Compile Include="Models\List\MailChimpListCollection.cs" />
+    <Compile Include="Models\List\MailChimpList.cs" />
+    <Compile Include="Models\List\MailChimpListDefaults.cs" />
+    <Compile Include="Models\List\MailChimpListStatistics.cs" />
+    <Compile Include="Models\MailChimpMetadata.cs" />
+    <Compile Include="Models\Campaign\MailChimpCampaignRssScheduleDaily.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eOne.Common\eOne.Common.csproj">
+      <Project>{5b29ddf0-0c12-4c3c-85ad-b9e11d9ffb69}</Project>
+      <Name>eOne.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
