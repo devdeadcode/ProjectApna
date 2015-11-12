@@ -3,38 +3,66 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using eOne.Common.DataConnectors;
+using System.Globalization;
 
 namespace eOne.Common.Connectors.GoogleAnalytics.Models
 {
     public class GoogleAnalyticsKeywords : DataConnectorEntityModel
     {
+        #region Dimensions
         [FieldSettings("Keyword", DefaultField = true)]
         public string keyword { get; set; }
 
-        [FieldSettings("Number of searches", DefaultField = true)]
-        public int num_of_numbers { get; set; }
-
-        public GoogleAnalyticsTime time { get; set; }
-
         [FieldSettings("Date")]
-        public string date => time.date;
+        public string date { get; set; }
+        #endregion
 
+        #region Metrics
+        [FieldSettings("Number of searches", DefaultField = true)]
+        public int organicSearches { get; set; }
+        #endregion
+
+        #region Calculations
         [FieldSettings("Year")]
-        public string year => time.year;
+        public string year => date.Substring(0, 4);
 
         [FieldSettings("Month")]
-        public string month => time.month;
+        public string month
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                return theTime.ToString("MMMM");
+            }
+        }
 
         [FieldSettings("Week")]
-        public string week => time.week;
+        public int week
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(theTime);
+                if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday) { theTime = theTime.AddDays(3); }
+                return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(theTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            }
+            set { }
+        }
 
         [FieldSettings("Day of month")]
-        public string day_of_month => time.day_of_month;
+        public string day => date.Substring(6);
 
-        [FieldSettings("Hour")]
-        public string hour => time.hour;
+        [FieldSettings("Day of week")]
+        public string dayOfWeek
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                return theTime.ToString("dddd");
+            }
+        }
+        #endregion
 
-        [FieldSettings("Day_of_week")]
-        public string day_of_week => time.day_of_week;
+
     }
 }

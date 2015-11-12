@@ -57,7 +57,7 @@ namespace eOne.Common.Connectors.Timely.Models
         [FieldSettings("Timer stopped on", FieldTypeId = DataConnector.FieldTypeIdQuantity)]
         public decimal timer_stopped_on { get; set; }
 
-        [FieldSettings("Created from", FieldTypeId = DataConnector.FieldTypeIdQuantity)]
+        [FieldSettings("Created from", FieldTypeId = DataConnector.FieldTypeIdQuantity, DefaultField = true)]
         public TimelyEventFrom created_from { get; set; }
 
         [FieldSettings("Updated from", FieldTypeId = DataConnector.FieldTypeIdQuantity)]

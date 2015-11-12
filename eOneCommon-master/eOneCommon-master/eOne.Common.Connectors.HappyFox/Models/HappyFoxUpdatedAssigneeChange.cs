@@ -8,8 +8,8 @@ namespace eOne.Common.Connectors.HappyFox.Models
 {
     public class HappyFoxUpdatedAssigneeChange : DataConnectorEntityModel
     {
-        public string assigned_from { get; set; }
+        public string new_name { get; set; }
 
-        public string assigned_to { get; set; }
+        public string old_name { get; set; }
     }
 }

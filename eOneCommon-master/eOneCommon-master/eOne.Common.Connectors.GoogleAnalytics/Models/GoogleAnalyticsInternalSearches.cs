@@ -3,65 +3,74 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using eOne.Common.DataConnectors;
+using System.Globalization;
 
 namespace eOne.Common.Connectors.GoogleAnalytics.Models
 {
     public class GoogleAnalyticsInternalSearches : DataConnectorEntityModel
     {
+        #region Dimensions
         [FieldSettings("Keyword", DefaultField = true)]
-        public string keyword { get; set; }
-
-        [FieldSettings("Refinements")]
-        public string refinements { get; set; }
+        public string searchKeyword { get; set; }
 
         [FieldSettings("Category")]
-        public string category { get; set; }
-
-        [FieldSettings("Start page")]
-        public string string_Page { get; set; }
-
-        [FieldSettings("Destination page")]
-        public string destinationPage { get; set; }
-
-        [FieldSettings("Number of searches", DefaultField = true)]
-        public int num_of_searches { get; set; }
-
-        [FieldSettings("Number of unique searches")]
-        public int num_of_unique_searches { get; set; }
-
-        public GoogleAnalyticsTime time { get; set; }
+        public string searchCategory { get; set; }
 
         [FieldSettings("Date")]
-        public string date => time.date;
+        public string date { get; set; }
+        #endregion
 
-        [FieldSettings("Year")]
-        public string year => time.year;
+        #region metrics
+        [FieldSettings("Refinements")]
+        public string searchRefinements { get; set; }
 
-        [FieldSettings("Month")]
-        public string month => time.month;
-
-        [FieldSettings("Week")]
-        public string week => time.week;
-
-        [FieldSettings("Day of month")]
-        public string day_of_month => time.day_of_month;
-
-        [FieldSettings("Hour")]
-        public string hour => time.hour;
-
-        [FieldSettings("Day_of_week")]
-        public string day_of_week => time.day_of_week;
-
-        [FieldSettings("Percentage of sessions with search")]
-        public decimal per_of_sessions_with_search { get; set; }
+        [FieldSettings("Number of searches", DefaultField = true)]
+        public int searchResultViews { get; set; }
 
         [FieldSettings("Time after search")]
-        public int MyProperty { get; set; }
+        public string searchDuration { get; set; }
+        #endregion
+        
+        #region Calculations
+        [FieldSettings("Year")]
+        public string year => date.Substring(0,4);
 
-        [FieldSettings("Search exit rate")]
-        public decimal search_exit_rate { get; set; }
+        [FieldSettings("Month")]
+        public string month
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                return theTime.ToString("MMMM");
+            }
+        }
 
-        [FieldSettings("Number of refinements")]
-        public int num_of_refinements { get; set; }
+        [FieldSettings("Week")]
+        public int week
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(theTime);
+                if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday) { theTime = theTime.AddDays(3); }
+                return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(theTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            }
+            set { }
+        }
+
+        [FieldSettings("Day of month")]
+        public string day => date.Substring(6,8);
+
+        [FieldSettings("Day of week")]
+        public string dayOfWeek
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                return theTime.ToString("dddd");
+            }
+        }
+        #endregion
+        
     }
 }

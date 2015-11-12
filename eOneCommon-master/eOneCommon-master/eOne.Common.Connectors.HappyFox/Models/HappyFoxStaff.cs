@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.Collections.Generic;
 using eOne.Common.DataConnectors;
 
 namespace eOne.Common.Connectors.HappyFox.Models
@@ -11,34 +8,33 @@ namespace eOne.Common.Connectors.HappyFox.Models
         [FieldSettings("Name", DefaultField = true)]
         public string name { get; set; }
 
-        [FieldSettings("Email", DefaultField = true)]
+        [FieldSettings("Email", DefaultField = true, FieldTypeId = DataConnector.FieldTypeIdEmail)]
         public string email { get; set; }
 
-        [FieldSettings("Staff ID")]
+        [FieldSettings("Staff ID", FieldTypeId = DataConnector.FieldTypeIdInteger)]
         public int id { get; set; }
-
-        public HappyFoxStaffRole role { get; set; }
 
         [FieldSettings("Role", DefaultField = true)]
         public string role_name => role.name;
 
-        [FieldSettings("Active")]
+        [FieldSettings("Active", FieldTypeId = DataConnector.FieldTypeIdYesNo)]
         public bool active { get; set; }
 
-        #region Hidden Properties
 
-        public static List<int> categories { get; set; }
-        public static List<string> permissions { get; set; }
+        #region Hidden Properties
+        public HappyFoxStaffRole role { get; set; }
+        public List<int> categories { get; set; }
+        public List<string> permissions { get; set; }
         #endregion
 
         #region Calculations
 
-        //[FieldSettings("Categories", Created = true, FieldTypeId = DataConnector.FieldTypeIdDate)]
-        //public string category = string.Join(",", categories);
+        [FieldSettings("Categories", Created = true, FieldTypeId = DataConnector.FieldTypeIdInteger)]
+        public string category => string.Join(",", categories);
 
-        //[FieldSettings("Permissions", Created = true, FieldTypeId = DataConnector.FieldTypeIdDate)]
-        //public string permission = string.Join(",", permissions);
-        
+        [FieldSettings("Permissions", Created = true)]
+        public string permission => string.Join(",", permissions);
+
         #endregion
     }
 }

@@ -18,28 +18,10 @@ namespace eOne.Common.Connectors.HappyFox.Models
 
         public HappyFoxStaffRole role { get; set; }
 
-        public string role_name
-        {
-            get
-            {
-                try
-                {
-                    return role.name;
-                }
-                catch { return string.Empty; }
-            }
-        }
+        public string role_name => role == null ? string.Empty : role.name;
 
-        public int role_id
-        {
-            get
-            {
-                try
-                {
-                    return role.id;
-                }
-                catch { return 0; }
-            }
-        }
+        public int role_id => role?.id ?? 0;
+        
+        
     }
 }

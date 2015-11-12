@@ -9,5 +9,7 @@ namespace eOne.Common.Connectors.GoogleAnalytics.Models
         public string columnType { get; set; }
         public string dataType { get; set; }
 
+        public string updatedName => name.Remove(0, 3);
+
     }
 }

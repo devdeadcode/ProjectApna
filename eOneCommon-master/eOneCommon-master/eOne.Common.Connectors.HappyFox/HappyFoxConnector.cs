@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using eOne.Common.Connectors.HappyFox.Models;
 using eOne.Common.DataConnectors.Rest;
 
@@ -23,7 +24,7 @@ namespace eOne.Common.Connectors.HappyFox
             Name = "HapyFox";
             Group = ConnectorGroup.Helpdesk;
             AuthenticationType = RestConnectorAuthenticationType.Basic;
-            BaseUrl = "https://eone.happyfox.com/api/1.1/json/";
+            BaseUrl = "https://ethree.happyfox.com/api/1.1/json/";
             SerializationType = RestConnectorSerializationType.Json;
             AddSetup();
         }
@@ -32,15 +33,30 @@ namespace eOne.Common.Connectors.HappyFox
         {
             Username = Key;
             Password = Token;
-            AddEntity(EntityIdTicket, "Tickets", typeof(HappyFoxTicket));
-            AddEntity(EntityIdStaff, "Staff", typeof(HappyFoxStaff));
-            AddEntity(EntityIdContact, "Contacts", typeof(HappyFoxContact));
-            AddEntity(EntityIdKnowledgeBaseArticle, "Knowledge base articles", typeof(HappyFoxKnowledgeBasedArticle));
-            AddEntity(EntityIdTicketUpdate, "Ticket updates", typeof(HappyFoxTicketUpdate));
-            AddEntity(EntityIdTicketMessage, "Ticket messages", typeof(HappyFoxTicketMessage));
-            AddEntity(EntityIdTicketSummary, "Ticket summary", typeof(HappyFoxTicketSummary));
-            //AddEntity(EntityIdStaffSummary, "Staff summary", typeof(HappyFoxTicketSummary));
 
+            // add entities
+            var ticketEntity = AddEntity(EntityIdTicket, "Tickets", typeof(HappyFoxTicket));
+            var staffEntity = AddEntity(EntityIdStaff, "Staff", typeof(HappyFoxStaff));
+            var contactEntity = AddEntity(EntityIdContact, "Contacts", typeof(HappyFoxContact));
+            AddEntity(EntityIdKnowledgeBaseArticle, "Knowledge base articles", typeof(HappyFoxKnowledgeBasedArticle));
+            var ticketUpdateEntity = AddEntity(EntityIdTicketUpdate, "Ticket updates", typeof(HappyFoxTicketUpdate));
+            var ticketMessageEntity = AddEntity(EntityIdTicketMessage, "Ticket messages", typeof(HappyFoxTicketMessage));
+            var ticketSummaryEntity = AddEntity(EntityIdTicketSummary, "Ticket summary", typeof(HappyFoxTicketSummary));
+
+            // set default max records
+            foreach (var entity in Entities) entity.DefaultMaxRecords = 100;
+
+            // add relationships
+            ticketEntity.AddRelatedEntity("Ticket updates", ticketUpdateEntity, "id", "ticket_id");
+            ticketEntity.AddRelatedEntity("Ticket messages", ticketMessageEntity, "id", "ticket_id");
+            staffEntity.AddRelatedEntity("Tickets", ticketEntity, "id", "staff_id");
+            contactEntity.AddRelatedEntity("Tickets", ticketEntity, "id", "contact_id");
+            ticketSummaryEntity.AddRelatedEntity("Tickets", ticketEntity, "id", "ticket_id");
+
+            // add favorites
+            HappyFoxFavoriteHelper.AddTicketFavorites(ticketEntity);
+            HappyFoxFavoriteHelper.ContactFavorites(contactEntity);
+            HappyFoxFavoriteHelper.UpdateFavorites(ticketUpdateEntity);
         }
 
         public override string GetEndpoint(ConnectorQuery query)
@@ -51,17 +67,16 @@ namespace eOne.Common.Connectors.HappyFox
                 case EntityIdTicket:
                     return "tickets/";
                 case EntityIdStaff:
-                    return "staff/"; //correct
+                    return "staff/";
                 case EntityIdContact:
                     return "users/";
                 case EntityIdKnowledgeBaseArticle:
-                    return "kb/sections/"; //correct
+                    return "kb/sections/";
                 case EntityIdTicketUpdate:
                 case EntityIdTicketMessage:
                 case EntityIdTicketSummary:
                     return "tickets/";
-                    //case EntityIdStaffSummary:
-                    //    return "staff/";
+
             }
             return string.Empty;
         }
@@ -78,12 +93,6 @@ namespace eOne.Common.Connectors.HappyFox
                     {
                         inst.ticketCollection = ticketResult[0];
                         ticketResponse.Add(inst);
-                        //ticketResponse.Add(new HappyFoxTicket()
-                        //{
-                        //    id = inst.id,
-                        //    subject = inst.subject,
-
-                        //});
                     }
                     return ticketResponse;
 
@@ -115,12 +124,12 @@ namespace eOne.Common.Connectors.HappyFox
                         ticketInst.ticketCollection = ticketCollections[0];
                         updateTickets.Add(ticketInst);
                     }
-                    for (int i = 0; i < updateTickets.Count; i++)
+                    foreach (var t in updateTickets)
                     {
-                        for (int j = 0; j < updateTickets[i].updates.Count; j++)
+                        foreach (var t1 in t.updates)
                         {
-                            updateTickets[i].updates[j].ticket = updateTickets[i];
-                            ticketUpdates.Add(updateTickets[i].updates[j]);
+                            t1.ticket = t;
+                            ticketUpdates.Add(t1);
                         }
                     }
 
@@ -139,21 +148,17 @@ namespace eOne.Common.Connectors.HappyFox
                         ticketInst.ticketCollection = collections[0];
                         messageTickets.Add(ticketInst);
                     }
-                    for (int i = 0; i < messageTickets.Count; i++)
+                    foreach (var t in messageTickets)
                     {
-                        for (int j = 0; j < messageTickets[i].updates.Count; j++)
+                        foreach (var t1 in t.updates)
                         {
-                            messageTickets[i].updates[j].ticket = messageTickets[i];
-                            messageUpdates.Add(messageTickets[i].updates[j]);
+                            t1.ticket = t;
+                            messageUpdates.Add(t1);
 
-                            for (int k = 0; k < messageUpdates.Count; k++)
+                            foreach (var t2 in messageUpdates)
                             {
-                                try
-                                {
-                                    messageUpdates[k].message.update = messageUpdates[k];
-                                    messages.Add(messageUpdates[k].message);
-                                }
-                                catch { }
+                                t2.message.update = t2;
+                                messages.Add(t2.message);
                             }
                         }
                     }
@@ -163,34 +168,46 @@ namespace eOne.Common.Connectors.HappyFox
                 case EntityIdTicketSummary:
                     data = "[\n    " + data + "    \n]";
                     var ticketSummary = DeserializeJson<List<HappyFoxTicketCollection>>(data);
-                    var assignedTicket = new List<HappyFoxTicket>();
+                    
                     var assignedToSummary = new List<HappyFoxTicketSummary>();
+                    
 
-                    foreach (var ticketInst in ticketSummary[0].data)
+                    var staffData = GetResponse("staff/");
+                    var staff = DeserializeJson<List<HappyFoxStaff>>(staffData);
+                    var allTheData = new List<List<HappyFoxTicket>>();
+
+                    foreach (var val in staff)
                     {
-                        ticketInst.ticketCollection = ticketSummary[0];
-                        assignedTicket.Add(ticketInst);
-                    }
-                    for (int i = 0; i < assignedTicket.Count; i++)
-                    {
-                        if(assignedTicket[i].assigned_to != null)
+                        var assignedTickets = new List<HappyFoxTicket>();
+                        foreach (var ticket in ticketSummary[0].data)
                         {
-                            assignedTicket[i].assigned_to.ticket = assignedTicket[i];
-                            assignedToSummary.Add(assignedTicket[i].assigned_to);
-                        }
-                        else
-                        {
-                            assignedToSummary.Add(new HappyFoxTicketSummary
+                            if (ticket.assigned_to != null)
                             {
-                                name = "Not assigned",
-                                email = string.Empty,
-                                active = false,
-                                role_id = 0,
-                                role_name = string.Empty
-                            });
+                                if (ticket.assigned_to.name == val.name)
+                                {
+
+                                    assignedTickets.Add(ticket);
+                                    
+                                }
+                                
+                            }
+                            
                         }
+                        
+                        assignedToSummary.Add(new HappyFoxTicketSummary()
+                        {
+                            name = val.name,
+                            email = val.email,
+                            active = val.active,
+                            role_name = val.role.name,
+                            role_id = val.role.id,
+                            ticketList = assignedTickets
+                        });
+                        
                     }
+
                     return assignedToSummary;
+
             }
             return null;
         }

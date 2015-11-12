@@ -13,6 +13,6 @@ namespace eOne.Common.Connectors.GoogleAnalytics.Models
 
         public string screenColors { get; set; }
 
-        public string screenResolutions { get; set; }
+        public string screenResolution { get; set; }
     }
 }

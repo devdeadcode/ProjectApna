@@ -3,68 +3,90 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using eOne.Common.DataConnectors;
+using System.Globalization;
 
 namespace eOne.Common.Connectors.GoogleAnalytics.Models
 {
     class GoogleAnalyticsSessions : DataConnectorEntityModel
     {
-        [FieldSettings("Duration")]
-        public string duration { get; set; }
+        #region Dimensions
+        [FieldSettings("Date", DefaultField = true)]
+        public string date { set; get; }
+        #endregion
 
-        public GoogleAnalyticsUsers user { get; set; }
-
+        #region Metrics
         [FieldSettings("Number of sessions", DefaultField = true)]
-        public int num_of_sessions => user.num_of_sessions;
+        public int sessions { get; set; }
+
+        [FieldSettings("Duration")]
+        public string sessionDuration { get; set; }
 
         [FieldSettings("Bounces")]
         public int bounces { get; set; }
 
         [FieldSettings("Hits")]
         public int hits { get; set; }
-
-        public GoogleAnalyticsTime time { get; set; }
-
-        [FieldSettings("Date", DefaultField = true)]
-        public string date => time.date;
-
-        [FieldSettings("Year")]
-        public string year => time.year;
-
-        [FieldSettings("Month")]
-        public string month => time.month;
-
-        [FieldSettings("Week")]
-        public string week => time.week;
-
-        [FieldSettings("Day of month")]
-        public string day_of_month => time.day_of_month;
-
-        [FieldSettings("Hour")]
-        public string hour => time.hour;
-
-        [FieldSettings("Day_of_week")]
-        public string day_of_week => time.day_of_week;
-
+        #endregion
+        
         #region Calculations
         [FieldSettings("Bounce rate")]
         public decimal bounce_rate {
             get {
                 decimal rate = 0;
-                if(num_of_sessions != 0) {
-                    rate = bounces / num_of_sessions;
+                if(sessions != 0) {
+                    rate = bounces / sessions;
                 }
                 return rate;
             }
         }
 
-        [FieldSettings("Average session duration")]
+        [FieldSettings("Average session duration", DefaultField = true )]
         public decimal avg_session_duration {
             get {
                 decimal average = 0;
-                if(num_of_sessions != 0) {
-                    average = Convert.ToInt16(duration) / num_of_sessions;
+                if(sessions != 0) {
+                    average = Convert.ToDecimal(sessionDuration) / sessions;
                 }
                 return average;
+            }
+        }
+
+        [FieldSettings("Year")]
+        public string year => date.Substring(0, 4);
+
+        [FieldSettings("Month")]
+        public string month
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                return theTime.ToString("MMMM");
+            }
+        }
+
+        [FieldSettings("Week")]
+        public int week
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(theTime);
+                if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday) { theTime = theTime.AddDays(3); }
+                return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(theTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            }
+            set { }
+        }
+
+        [FieldSettings("Day of month")]
+        public string day => date.Substring(6, 8);
+
+        [FieldSettings("Day of week")]
+        public string dayOfWeek
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                return theTime.ToString("dddd");
             }
         }
         #endregion

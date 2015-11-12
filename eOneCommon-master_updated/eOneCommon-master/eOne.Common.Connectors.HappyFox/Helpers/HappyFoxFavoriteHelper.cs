@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using eOne.Common.DataConnectors;
+﻿using eOne.Common.Query;
 
-namespace eOne.Common.Connectors.HappyFox.Models
+namespace eOne.Common.Connectors.HappyFox.Helpers
 {
     public class HappyFoxFavoriteHelper
     {
-        public static void AddTicketFavorites(DataConnectorEntity entity)
+        public static void AddTicketFavorites(ConnectorEntity entity)
         {
             // add overdue ticket favorite
             var overdueProjectFavorite = entity.AddFavorite("Overdue tickets");
@@ -29,7 +24,7 @@ namespace eOne.Common.Connectors.HappyFox.Models
             // add ticket priority favorite
         }
 
-        public static void ContactFavorites(DataConnectorEntity entity)
+        public static void ContactFavorites(ConnectorEntity entity)
         {
             // add contact with pending tickets favorite
             var pendingTicketFavorite = entity.AddFavorite("Contacts with pending tickets");
@@ -37,7 +32,7 @@ namespace eOne.Common.Connectors.HappyFox.Models
             pendingTicketFavorite.Query.AddRestriction("num_of_pending_tickets", ConnectorRestriction.ConnectorRestrictionType.GreaterThan, 0);
         }
 
-        public static void UpdateFavorites(DataConnectorEntity entity)
+        public static void UpdateFavorites(ConnectorEntity entity)
         {
             // add due date change favorite
             var dueDateChangeFavorite = entity.AddFavorite("Due date changes");

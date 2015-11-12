@@ -60,6 +60,7 @@
     <Compile Include="Models\GoogleAnalyticsSystem.cs" />
     <Compile Include="Models\GoogleAnalyticsTime.cs" />
     <Compile Include="Models\GoogleAnalyticsUsers.cs" />
+    <Compile Include="Models\TotalsForAllRequests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

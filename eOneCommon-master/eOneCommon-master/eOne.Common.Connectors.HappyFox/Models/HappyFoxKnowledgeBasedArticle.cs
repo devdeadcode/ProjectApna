@@ -9,50 +9,101 @@ namespace eOne.Common.Connectors.HappyFox.Models
     class HappyFoxKnowledgeBasedArticle : DataConnectorEntityModel
     {
         //public HappyFoxArticle know_based_article { get; set; }
-        HappyFoxArticle know_based_article = new HappyFoxArticle();
+        public List<HappyFoxArticle> articles { get; set; }
 
         [FieldSettings("Title", DefaultField = true)]
         public string name { get; set; }
 
         [FieldSettings("Contents")]
-        public string content => know_based_article.contents;
+        public string content
+        {
+            get
+            {
+                var cnt = string.Empty;
+                foreach (var val in articles) cnt = val.contents;
+                return cnt;
+            }
+            set { }
+        }
 
-        [FieldSettings("Article ID")]
-        public int id => know_based_article.id;
+        [FieldSettings("Article ID", FieldTypeId = DataConnector.FieldTypeIdInteger)]
+        public int id
+        {
+            get
+            {
+                var iD = 0;
+                foreach (var val in articles) iD = val.id;
+                return iD;
+            }
+            set { }
+        }
 
-        [FieldSettings("Views")]
-        public int views => know_based_article.views;
+        [FieldSettings("Views", FieldTypeId = DataConnector.FieldTypeIdInteger)]
+        public int views
+        {
+            get
+            {
+                var vw = 0;
+                foreach (var val in articles) vw = val.views;
+                return vw;
+            }
+            set { }
+        }
 
         [FieldSettings("Section", DefaultField = true)]
-        public string description { get; set; }
+        public string sec_name
+        {
+            get
+            {
+                string vw = null;
+                foreach (var val in articles) vw = val.section_name;
+                return vw;
+            }
+            set { }
+        }
 
         [FieldSettings("Section description")]
-        public string sec_description { get; set; }
+        public string description { get; set; }
 
-        [FieldSettings("Last updated date")]
-        public string last_updated_date => know_based_article.last_updated_date;
+        [FieldSettings("Last updated date", FieldTypeId = DataConnector.FieldTypeIdDate)]
+        public string last_updated_date
+        {
+            get
+            {
+                var lastDate = string.Empty;
+                foreach (var val in articles) lastDate = val.last_updated_date;
+                return lastDate;
+            }
+        }
 
-        [FieldSettings("Last updated time")]
-        public string last_updated_time => know_based_article.last_updated_time;
+        [FieldSettings("Last updated time", FieldTypeId = DataConnector.FieldTypeIdTime)]
+        public string last_updated_time
+        {
+            get
+            {
+                var lastTime = string.Empty;
+                foreach (var val in articles) lastTime = val.last_updated_time;
+                return lastTime;
+            }
+        }
 
         #region Hidden properties
         public List<HappyFoxCategory> categories { get; set; }
         #endregion
 
         #region Calculations
-        [FieldSettings("Categories", DefaultField = true)]
-        public string category_names {
-            get{
+        [FieldSettings("Categories")]
+        public string category_names
+        {
+            get
+            {
                 string csv = null;
-                for(int i = 0; i<categories.Count; i++)
+                foreach (var t in categories.Where(t => t.name != null))
                 {
-                    if (categories[i].name != null)
-                    {
-                        csv = string.Join(",", categories.Select(x => x.name));
-                    }
+                    csv = string.Join(",", categories.Select(x => x.name));
                 }
                 return csv;
-                    
+
             }
         }
         #endregion

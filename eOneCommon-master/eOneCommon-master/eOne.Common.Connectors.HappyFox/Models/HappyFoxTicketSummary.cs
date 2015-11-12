@@ -8,128 +8,47 @@ namespace eOne.Common.Connectors.HappyFox.Models
 {
     public class HappyFoxTicketSummary : DataConnectorEntityModel
     {
+        #region General properties
+
         [FieldSettings("Name", DefaultField = true)]
         public string name { get; set; }
 
-        [FieldSettings("Email")]
+        [FieldSettings("Email", FieldTypeId = DataConnector.FieldTypeIdEmail)]
         public string email { get; set; }
 
         [FieldSettings("Active")]
         public bool active { get; set; }
 
-
-        public HappyFoxStaffRole role { get; set; }
-
         [FieldSettings("Role")]
-        public string role_name
-        {
-            get
-            {
-                return role.name;
-            }
-            set { }
-        }
+        public string role_name { get; set; }
 
-        [FieldSettings("Staff ID")]
-        public int role_id
-        {
-            get
-            {
-                return role.id;
-            }
-            set { }
-        }
+        [FieldSettings("Staff ID", FieldTypeId = DataConnector.FieldTypeIdInteger)]
+        public int role_id { get; set; }
+
+        #endregion
+
 
         #region Hidden Properties
-        public List<HappyFoxTicketSummary> tickets { get; set; }
-        List<HappyFoxTicket> data = new List<HappyFoxTicket>();
-
-        public List<HappyFoxTicketUpdate> update_list { get; set; }
-
-        public HappyFoxTicketCollection ticketCollection { get; set; }
+        
 
         public HappyFoxTicket ticket { get; set; }
-
-
-        public bool overdue
-        {
-            get
-            {
-                try
-                {
-                    return ticket.overdue;
-                }
-                catch { return false; }
-
-            }
-            set { }
-        }
-
+        
+        public List<HappyFoxTicket> ticketList { get; set; }
         #endregion
 
 
         #region Calculations
 
+        [FieldSettings("Number of tickets", DefaultField = true, FieldTypeId = DataConnector.FieldTypeIdInteger)]
+        public int num_of_tickets => ticketList.Count;
 
-
-        [FieldSettings("Number of tickets", DefaultField = true)]
-        public int num_of_tickets
-        {
-            get
-            {
-                try
-                {
-                    return ticket.num_of_tickets;
-                }
-                catch { return 0; }
-
-            }
-            set
-            {
-                num_of_tickets = tickets.Count;
-            }
-        }
-
-        [FieldSettings("Number of overdue tickets", DefaultField = true)]
-        public int num_of_overdue_tickets
-        {
-            get
-            {
-                int num_of_ovrdues = 0;
-                if (overdue == true) { num_of_ovrdues = data.Count; }
-                return num_of_ovrdues;
-            }
-        }
-
-        [FieldSettings("Number of unresponded tickets", DefaultField = true)]
-        public int num_of_unresponded_tickets
-        {
-            get
-            {
-                int num_of_unres_tickets = 0;
-                int null_msg_count = 0;
-                try
-                {
-                    for (int j = 0; j < data.Count; j++)
-                    {
-                        for (int i = 0; i < update_list.Count; i++)
-                        {
-                            if (update_list[i].message == null) { null_msg_count++; }
-                        }
-                        if (null_msg_count == update_list.Count) { num_of_unres_tickets++; }
-                    }
-                    return num_of_unres_tickets;
-                }
-                catch
-                {
-                    return 0;
-                }
-
-            }
-        }
-
+        [FieldSettings("Number of overdue tickets", DefaultField = true, FieldTypeId = DataConnector.FieldTypeIdInteger)]
+        public int num_of_overdue_tickets => ticketList.Count(tick => tick.overdue);
+        
+        [FieldSettings("Number of unresponded tickets", FieldTypeId = DataConnector.FieldTypeIdInteger, DefaultField = true)]
+        public int num_of_unresponded_tickets => ticketList.Where(tick => tick.assigned_to != null).Count(tick => tick.number_of_messages == 1);
+        
         [FieldSettings("Percentage of overdue tickets")]
-        //public decimal perce_of_overdue_tickets => (num_of_overdue_tickets / num_of_tickets) * 100;
         public decimal perce_of_overdue_tickets
         {
             get
@@ -143,8 +62,6 @@ namespace eOne.Common.Connectors.HappyFox.Models
         }
 
         [FieldSettings("Percentage of unresponded tickets")]
-        //public decimal perce_of_unresponded_tickets => (num_of_unresponded_tickets / num_of_tickets) * 100;
-
         public decimal perce_of_unresponded_tickets
         {
             get
@@ -162,12 +79,8 @@ namespace eOne.Common.Connectors.HappyFox.Models
         {
             get
             {
-                decimal sum = 0;
-                for (int i = 0; i < data.Count; i++)
-                {
-                    sum += data[i].age;
-                }
-                if (data.Count != 0) { return sum / num_of_tickets; }
+                var sum = ticketList.Sum(val => val.age);
+                if (ticketList.Count != 0) { return sum / ticketList.Count; }
                 return 0;
             }
         }
@@ -177,8 +90,7 @@ namespace eOne.Common.Connectors.HappyFox.Models
         {
             get
             {
-                List<decimal> ages = new List<decimal>();
-                for (int i = 0; i < data.Count; i++) { ages.Add(data[i].age); }
+                var ages = ticketList.Select(t => t.age).ToList();
                 return ages.Max();
             }
         }
@@ -188,15 +100,8 @@ namespace eOne.Common.Connectors.HappyFox.Models
         {
             get
             {
-                decimal sum = 0;
-                for (int i = 0; i < data.Count; i++)
-                {
-                    if (data[i].overdue == true)
-                    {
-                        sum += data[i].days_overdue;
-                    }
-                }
-                if (data.Count != 0) { return sum / num_of_tickets; }
+                var sum = ticketList.Where(t => t.overdue).Aggregate<HappyFoxTicket, decimal>(0, (current, t) => current + t.days_overdue);
+                if (ticketList.Count != 0) { return sum / num_of_tickets; }
                 return 0;
             }
         }
@@ -206,8 +111,7 @@ namespace eOne.Common.Connectors.HappyFox.Models
         {
             get
             {
-                List<decimal> overdues = new List<decimal>();
-                for (int i = 0; i < data.Count; i++) { overdues.Add(data[i].days_overdue); }
+                var overdues = ticketList.Select(t => t.days_overdue).Select(dummy => (decimal)dummy).ToList();
                 return overdues.Max();
             }
         }
@@ -217,11 +121,7 @@ namespace eOne.Common.Connectors.HappyFox.Models
         {
             get
             {
-                decimal response_sum = 0;
-                for (int i = 0; i < data.Count; i++)
-                {
-                    response_sum += data[i].first_response_time;
-                }
+                var response_sum = ticketList.Sum(t => t.first_response_time);
                 if ((num_of_tickets - num_of_unresponded_tickets) != 0) { return response_sum / (num_of_tickets - num_of_unresponded_tickets); }
                 return 0;
             }
@@ -232,14 +132,7 @@ namespace eOne.Common.Connectors.HappyFox.Models
         {
             get
             {
-                List<decimal> response_times = new List<decimal>();
-                for (int i = 0; i < data.Count; i++)
-                {
-                    if ((num_of_tickets - num_of_unresponded_tickets) != 0)
-                    {
-                        response_times.Add(data[i].first_response_time);
-                    }
-                }
+                var response_times = ticketList.Select(t => t.first_response_time).ToList();
                 return response_times.Min();
             }
         }
@@ -249,11 +142,7 @@ namespace eOne.Common.Connectors.HappyFox.Models
         {
             get
             {
-                List<decimal> response_times = new List<decimal>();
-                for (int i = 0; i < data.Count; i++)
-                {
-                    response_times.Add(data[i].first_response_time);
-                }
+                var response_times = ticketList.Select(t => t.first_response_time).ToList();
                 return response_times.Max();
             }
         }
@@ -263,12 +152,12 @@ namespace eOne.Common.Connectors.HappyFox.Models
         {
             get
             {
-                int ticket_count = 0;
+                var ticket_count = 0;
                 decimal sum = 0;
-                for (int i = 0; i < data.Count; i++)
+                foreach (var t in ticketList)
                 {
-                    sum += Convert.ToDecimal(data[i].time_spent);
-                    if (data[i].time_spent != null) { ticket_count++; }
+                    sum += Convert.ToDecimal(t.time_spent);
+                    if (t.time_spent != null) { ticket_count++; }
                 }
 
                 if (ticket_count != 0) { return sum / ticket_count; }
@@ -281,11 +170,7 @@ namespace eOne.Common.Connectors.HappyFox.Models
         {
             get
             {
-                List<decimal> spent_times = new List<decimal>();
-                for (int i = 0; i < data.Count; i++)
-                {
-                    spent_times.Add(Convert.ToDecimal(data[i].time_spent));
-                }
+                var spent_times = ticketList.Select(t => Convert.ToDecimal(t.time_spent)).ToList();
                 return spent_times.Min();
             }
         }
@@ -295,15 +180,12 @@ namespace eOne.Common.Connectors.HappyFox.Models
         {
             get
             {
-                List<decimal> spent_times = new List<decimal>();
-                for (int i = 0; i < data.Count; i++)
-                {
-                    spent_times.Add(Convert.ToDecimal(data[i].time_spent));
-                }
+                var spent_times = ticketList.Select(t => Convert.ToDecimal(t.time_spent)).ToList();
                 return spent_times.Max();
             }
-            #endregion
+
         }
+        #endregion
     }
 
 }

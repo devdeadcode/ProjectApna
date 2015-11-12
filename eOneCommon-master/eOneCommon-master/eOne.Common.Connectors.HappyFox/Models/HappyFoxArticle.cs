@@ -12,13 +12,15 @@ namespace eOne.Common.Connectors.HappyFox.Models
 
         public int views { get; set; }
 
-        public string last_updated_date { get; set; }
+        public string last_updated_at { get; set; }
 
-        public string last_updated_time { get; set; }
+        public string last_updated_date => last_updated_at?.Substring(0, 10) ?? string.Empty;
+
+        public string last_updated_time => last_updated_at?.Substring(11) ?? string.Empty;
+
+        public string section_name { get; set; }
 
         public List<string> related_articles { get; set; }
-
-        public string name { get; set; }
 
         public int id { get; set; }
 

@@ -10,6 +10,7 @@ using eOne.Common.Connectors.HappyFox;
 using eOne.Common.Connectors.GoogleAnalytics;
 using eOne.Common.DataConnectors;
 using eOne.Common.Connectors.BaseCamp;
+using eOne.Common.Connectors.Stripe;
 
 namespace eOne.Common.SampleConnectors
 {
@@ -80,16 +81,15 @@ namespace eOne.Common.SampleConnectors
             // add HappyFox connector
             var happyFoxConnector = new HapppyFoxConnector
             {
-                Key = "e8492df91c794eb6a2ca28c37cfb5ee9",
-                Token = "66bf4655846e425c8026b7f14470fe38"
+                Key = "d5b3fbc8190b40ddb744a652fb2d0c4e",
+                Token = "233f59e7ab4b41e0a15edd74b410ee76"
             };
             connectors.Add(happyFoxConnector);
 
             //add GoogleAnalytics connector
             var googleAnalyticsConnector = new GoogleAnalyticsConnector
             {
-                Key = "1074745083580-j088f2g8bj4h5cssl5kqr8hkf2k2s324.apps.googleusercontent.com",
-                Secret = "yzf3lb5frhf487ODoEMY8cM-"
+                Token = "ya29.IwJoO7mJx8mWOxH7MNS32U7xMfoR14x_S8FT2B_SlCi7oYlDAOUetpTedWslSuKA764Utg"
             };
             connectors.Add(googleAnalyticsConnector);
 
@@ -100,6 +100,15 @@ namespace eOne.Common.SampleConnectors
                 Secret = ""
             };
             connectors.Add(basecampConnector);
+
+            // add Stripe connector
+            var stripeConnector = new StripeConnector
+            {
+                Key = "sk_test_AKWEjlI9ncrRklNfd8x6PerU",
+                Token = "pk_test_mVBryZrK0gD2LjXpdNyEpQJS"
+            };
+            connectors.Add(stripeConnector);
+
 
 
             return connectors;

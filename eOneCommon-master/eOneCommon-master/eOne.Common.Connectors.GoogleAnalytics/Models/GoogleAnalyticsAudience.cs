@@ -5,8 +5,8 @@ namespace eOne.Common.Connectors.GoogleAnalytics.Models
 {
     public class GoogleAnalyticsAudience : DataConnectorEntityModel
     {
-        public string gender { get; set; }
+        public string userGender { get; set; }
 
-        public string age_bracket { get; set; }
+        public string userAgeBracket { get; set; }
     }
 }

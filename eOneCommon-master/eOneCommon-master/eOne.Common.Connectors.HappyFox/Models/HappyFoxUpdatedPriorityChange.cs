@@ -8,8 +8,8 @@ namespace eOne.Common.Connectors.HappyFox.Models
 {
     public class HappyFoxUpdatedPriorityChange : DataConnectorEntityModel
     {
-        public string from_priority { get; set; }
+        public string new_name { get; set; }
 
-        public string to_priority { get; set; }
+        public string old_name { get; set; }
     }
 }

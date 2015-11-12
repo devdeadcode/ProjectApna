@@ -3,85 +3,77 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using eOne.Common.DataConnectors;
+using System.Globalization;
 
 namespace eOne.Common.Connectors.GoogleAnalytics.Models
 {
     class GoogleAnalyticsBrowsers : DataConnectorEntityModel
     {
-        public enum Device_Category
-        {
-            [FieldSettings("Desktop")]
-            Desktop,
-            [FieldSettings("Tablet")]
-            Tablet,
-            [FieldSettings("Mobile")]
-            Mobile
-        }
-
+        #region Dimensions
         [FieldSettings("Browser", DefaultField = true)]
         public string browser { get; set; }
 
-        [FieldSettings("Browser version")]
-        public string browser_version { get; set; }
-
         [FieldSettings("Opertating system", DefaultField = true)]
-        public string os { get; set; }
+        public string operatingSystem { get; set; }
+
+        [FieldSettings("Device category", DefaultField = true)]
+        public string deviceCategory { get; set; }
+
+        [FieldSettings("Browser version")]
+        public string browserVersion { get; set; }
 
         [FieldSettings("Operation system version")]
-        public string os_version { get; set; }
-
-        [FieldSettings("Device category", DefaultField = true, EnumType = typeof(Device_Category))]
-        public Device_Category dev_cat { get; set; }
-
-        public GoogleAnalyticsUsers user { get; set; }
-
-        [FieldSettings("Number of users", DefaultField = true)]
-        public int num_of_users => user.num_of_users;
-        
-        [FieldSettings("Page views")]
-        public int page_views => user.views;
-
-        [FieldSettings("Number of sessions")]
-        public int num_of_sessions => user.num_of_sessions;
-
-        public GoogleAnalyticsTime time { get; set; }
+        public string operatingSystemVersion { get; set; }
 
         [FieldSettings("Date")]
-        public string date => time.date;
+        public string date { get; set; }
+        #endregion
 
+        #region Metrics
+        [FieldSettings("Number of users", DefaultField = true)]
+        public int users { get; set; }
+        #endregion
+        
+        #region Calculations
         [FieldSettings("Year")]
-        public string year => time.year;
+        public string year => date.Substring(0, 4);
 
         [FieldSettings("Month")]
-        public string month => time.month;
+        public string month
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                return theTime.ToString("MMMM");
+            }
+        }
 
         [FieldSettings("Week")]
-        public string week => time.week;
+        public int week
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                DayOfWeek day = CultureInfo.InvariantCulture.Calendar.GetDayOfWeek(theTime);
+                if (day >= DayOfWeek.Monday && day <= DayOfWeek.Wednesday) { theTime = theTime.AddDays(3); }
+                return CultureInfo.InvariantCulture.Calendar.GetWeekOfYear(theTime, CalendarWeekRule.FirstFourDayWeek, DayOfWeek.Monday);
+            }
+            set { }
+        }
 
         [FieldSettings("Day of month")]
-        public string day_of_month => time.day_of_month;
+        public string day => date.Substring(6, 8);
 
-        [FieldSettings("Hour")]
-        public string hour => time.hour;
+        [FieldSettings("Day of week")]
+        public string dayOfWeek
+        {
+            get
+            {
+                DateTime theTime = DateTime.ParseExact(date, "yyyyMMdd", CultureInfo.InvariantCulture);
+                return theTime.ToString("dddd");
+            }
+        }
+        #endregion
 
-        [FieldSettings("Day_of_week")]
-        public string day_of_week => time.day_of_week;
-
-        public GoogleAnalyticsSystem system { get; set; }
-
-        [FieldSettings("Language")]
-        public string language => system.language;
-
-        [FieldSettings("Flash version")]
-        public string flashVersion => system.flashVersion;
-
-        [FieldSettings("Java enabled")]
-        public string javaEnabled => system.javaEnabled;
-
-        [FieldSettings("Screen colors")]
-        public string screenColors => system.screenColors;
-
-        [FieldSettings("Screen resolution")]
-        public string screenResolution => system.screenResolutions;
     }
 }

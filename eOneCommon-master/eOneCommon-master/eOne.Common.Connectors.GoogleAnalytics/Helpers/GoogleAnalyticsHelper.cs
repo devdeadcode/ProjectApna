@@ -13,11 +13,11 @@ namespace eOne.Common.Connectors.GoogleAnalytics.Helpers
         {
             // add New vs returning users favorite
             var newvsreturing = entity.AddFavorite("New vs returning users");
-            newvsreturing.Query.AddFields("date", "num_of_new_users", "num_of_returning_users", "num_of_users", "per_of_new_users");
+            newvsreturing.Query.AddFields("date", "newUsers", "num_of_returning_users", "users", "per_of_new_users");
 
             //add Today's users favorite
             var todaysusers = entity.AddFavorite("Today's users");
-            todaysusers.Query.AddFields("num_of_users", "num_of_sessions", "views");
+            todaysusers.Query.AddFields("users", "sessions", "views");
             todaysusers.Query.AddRestriction("date", ConnectorRestriction.ConnectorRestrictionType.Equals, "Today"); //double check
 
             //add This week's users
@@ -26,6 +26,29 @@ namespace eOne.Common.Connectors.GoogleAnalytics.Helpers
             thisweeksusers.Query.AddRestriction("date", ConnectorRestriction.ConnectorRestrictionType.GreaterThanOrEqualTo, "Sunday"); //double check
             thisweeksusers.Query.AddRestriction("date", ConnectorRestriction.ConnectorRestrictionType.LessThanOrEqualTo, "Saturday"); //double check
 
+            //add This month's users
+            var thismonthsusers = entity.AddFavorite("This month's users");
+            thismonthsusers.Query.AddFields("day", "users", "views");
+            thismonthsusers.Query.AddRestriction("date", ConnectorRestriction.ConnectorRestrictionType.GreaterThanOrEqualTo, "January"); //double check
+            thismonthsusers.Query.AddRestriction("date", ConnectorRestriction.ConnectorRestrictionType.LessThanOrEqualTo, "December"); //double check
+        }
+
+        public static void AddBrowserFavorites(DataConnectorEntity entity)
+        {
+            //add Mobile browser favorite
+            var mobile = entity.AddFavorite("Mobile");
+            mobile.Query.AddFields("browser", "operatingSystem", "users");
+            mobile.Query.AddRestriction("deviceCategory", ConnectorRestriction.ConnectorRestrictionType.Equals, "Mobile");
+
+            //add Tablet browser favorite
+            var tablet = entity.AddFavorite("Mobile");
+            tablet.Query.AddFields("browser", "operatingSystem", "users");
+            tablet.Query.AddRestriction("deviceCategory", ConnectorRestriction.ConnectorRestrictionType.Equals, "Tablet");
+
+            //add desktop browser favorite
+            var desktop = entity.AddFavorite("Mobile");
+            desktop.Query.AddFields("browser", "operatingSystem", "users");
+            desktop.Query.AddRestriction("deviceCategory", ConnectorRestriction.ConnectorRestrictionType.Equals, "Desktop");
         }
 
         public static void AddSessionfavorites(DataConnectorEntity entity)

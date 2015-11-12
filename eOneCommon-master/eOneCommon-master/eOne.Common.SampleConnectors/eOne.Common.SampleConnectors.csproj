@@ -113,6 +113,10 @@
       <Project>{b35cd57d-7a1f-424a-84aa-0d8b724eed1d}</Project>
       <Name>eOne.Common.Connectors.Shopify</Name>
     </ProjectReference>
+    <ProjectReference Include="..\eOne.Common.Connectors.Stripe\eOne.Common.Connectors.Stripe.csproj">
+      <Project>{254152d4-2c5a-4e12-a2cd-6e8591c2b536}</Project>
+      <Name>eOne.Common.Connectors.Stripe</Name>
+    </ProjectReference>
     <ProjectReference Include="..\eOne.Common.Connectors.Timely\eOne.Common.Connectors.Timely.csproj">
       <Project>{60166e7b-aa7a-4216-9b1a-fd3dc5c39198}</Project>
       <Name>eOne.Common.Connectors.Timely</Name>

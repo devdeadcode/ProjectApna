@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,7 +52,7 @@
     <Compile Include="Models\HappyFoxCannedActionStatusTo.cs" />
     <Compile Include="Models\HappyFoxCategory.cs" />
     <Compile Include="Models\HappyFoxContact.cs" />
-    <Compile Include="Helpers\HappyFoxFavoriteHelper.cs" />
+    <Compile Include="Models\HappyFoxFavoriteHelper.cs" />
     <Compile Include="Models\HappyFoxContactCollection.cs" />
     <Compile Include="Models\HappyFoxCustomField.cs" />
     <Compile Include="Models\HappyFoxCustomFieldChoices.cs" />
@@ -60,6 +64,7 @@
     <Compile Include="Models\HappyFoxTicket.cs" />
     <Compile Include="Models\HappyFoxTicketAssignedTo.cs" />
     <Compile Include="Models\HappyFoxTicketCollection.cs" />
+    <Compile Include="Models\HappyFoxTicketCustomFieldCategories.cs" />
     <Compile Include="Models\HappyFoxTicketMessage.cs" />
     <Compile Include="Models\HappyFoxTicketPriority.cs" />
     <Compile Include="Models\HappyFoxTicketSummary.cs" />
@@ -77,6 +82,9 @@
       <Project>{5b29ddf0-0c12-4c3c-85ad-b9e11d9ffb69}</Project>
       <Name>eOne.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

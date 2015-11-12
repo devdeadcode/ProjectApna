@@ -16,10 +16,10 @@ namespace eOne.Common.Connectors.GoogleAnalytics.Models
 
         public string week { get; set; }
 
-        public string day_of_month { get; set; }
+        public string day { get; set; }
 
         public string hour { get; set; }
 
-        public string day_of_week { get; set; }
+        public string dayOfWeek { get; set; }
     }
 }
